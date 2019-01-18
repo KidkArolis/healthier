@@ -1,6 +1,6 @@
 {
   "name": "pretty-standard",
-  "description": "All the goodness of standard with prettier styling and formatting.",
+  "description": "All the goodness of standard with the power of prettier formatting.",
   "version": "1.0.0",
   "author": {
     "name": "Karolis Narkevicius",
@@ -76,7 +76,7 @@
     "url": "https://github.com/KidkArolis/pretty-standard.git"
   },
   "scripts": {
-    "test": "standard && tape test/*.js"
+    "test": "./bin/cmd.js && tape test/*.js"
   },
   "standard": {
     "ignore": "tmp/**"
