@@ -1,0 +1,84 @@
+{
+  "name": "pretty-standard",
+  "description": "All the goodness of standard with prettier styling and formatting.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Karolis Narkevicius",
+    "url": "http://twitter.com/KidkArolis"
+  },
+  "bin": {
+    "pretty-standard": "./bin/cmd.js"
+  },
+  "bugs": {
+    "url": "https://github.com/KidkArolis/pretty-standard/issues"
+  },
+  "dependencies": {
+    "eslint": "~5.4.0",
+    "eslint-config-prettier": "^3.5.0",
+    "eslint-config-standard": "12.0.0",
+    "eslint-config-standard-jsx": "6.0.2",
+    "eslint-plugin-import": "~2.14.0",
+    "eslint-plugin-node": "~7.0.1",
+    "eslint-plugin-prettier": "^3.0.1",
+    "eslint-plugin-promise": "~4.0.0",
+    "eslint-plugin-react": "~7.11.1",
+    "eslint-plugin-standard": "~4.0.0",
+    "prettier": "^1.15.3",
+    "standard-engine": "~10.0.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "merge": "^1.2.0",
+    "mkdirp": "^0.5.1",
+    "rimraf": "^2.5.4",
+    "run-series": "^1.1.1",
+    "standard": "12.0.1",
+    "tape": "^4.6.3",
+    "xtend": "^4.0.0"
+  },
+  "engines": {
+    "node": ">=6"
+  },
+  "homepage": "https://github.com/KidkArolis/pretty-standard",
+  "keywords": [
+    "JavaScript Standard Style",
+    "bikeshed",
+    "check",
+    "checker",
+    "code",
+    "code checker",
+    "code linter",
+    "code standards",
+    "code style",
+    "enforce",
+    "eslint",
+    "hint",
+    "jscs",
+    "jshint",
+    "lint",
+    "policy",
+    "quality",
+    "simple",
+    "standard",
+    "standard style",
+    "style",
+    "style checker",
+    "style linter",
+    "verify",
+    "prettier",
+    "format",
+    "formatter"
+  ],
+  "license": "MIT",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KidkArolis/pretty-standard.git"
+  },
+  "scripts": {
+    "test": "standard && tape test/*.js"
+  },
+  "standard": {
+    "ignore": "tmp/**"
+  }
+}

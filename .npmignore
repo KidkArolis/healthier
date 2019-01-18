@@ -1,0 +1,5 @@
+.git*
+.npmignore
+.travis.yml
+test.js
+tmp/
