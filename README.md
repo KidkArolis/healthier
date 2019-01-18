@@ -48,6 +48,10 @@ Or pass `--fix` to format your code using prettier, which will also log the lint
 $ pretty-standard --fix
 ```
 
+### Configuring prettier
+
+You can configure prettier, for example, to use `"semi": false` or `"singleQutoe": true` as usual using `.prettierrc` file. See https://prettier.io/docs/en/configuration.html.
+
 ### Editor plugins
 
 Coming soon to Sublime, VSCode and Atom!
