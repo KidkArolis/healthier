@@ -1,5 +1,7 @@
 # Healthier
 
+[![Join the chat at https://gitter.im/healthier-linter/community](https://badges.gitter.im/healthier-linter/community.svg)](https://gitter.im/healthier-linter/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![travis][travis-image]][travis-url]
 [![npm][npm-image]][npm-url]
 [![downloads][downloads-image]][downloads-url]
