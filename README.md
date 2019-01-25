@@ -116,7 +116,7 @@ That's a lot of things you don't need to install!
 
 Healthier can be configured in `package.json` in `healthier` field.
 
-## Custom Parser
+### Custom Parser
 
 Using a custom parser is sometimes necessary when using futuristic JS features. To use one, install it from npm (e.g. `npm install babel-eslint`) and configure it in your package.json:
 
@@ -128,7 +128,7 @@ Using a custom parser is sometimes necessary when using futuristic JS features. 
 }
 ```
 
-## Ignoring files
+### Ignoring files
 
 Just like in Standard, The paths `node_modules/**`, `*.min.js`, `bundle.js`, `coverage/**`, hidden files/folders (beginning with `.`), and all patterns in a project's root `.gitignore` file are automatically excluded when looking for `.js` files to check.
 
@@ -146,7 +146,7 @@ a `healthier.ignore` property to `package.json`:
 }
 ```
 
-## Globals
+### Globals
 
 If you want to allow certain globals, configure like so:
 
@@ -158,11 +158,11 @@ If you want to allow certain globals, configure like so:
 }
 ```
 
-## Using Flow or TypeScript
+### Using Flow or TypeScript
 
 Follow Standard's documentation on this, but replace `standard` with `healthier`: https://github.com/standard/standard#can-i-use-a-javascript-language-variant-like-flow-or-typescript.
 
-## Other Options
+### Other Options
 
 In fact, make sure to check out all of [Standard configuration options][standard/standard]. Since Healthier is based on `standard-engine` all of the same features apply.
 
