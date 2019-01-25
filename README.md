@@ -4,7 +4,7 @@
 [![npm][npm-image]][npm-url]
 [![downloads][downloads-image]][downloads-url]
 
-An opinionated code linter – a friendly companion to prettier.
+An opinionated code linter – a friendly companion to Prettier.
 
 ## Why?
 
@@ -18,7 +18,12 @@ The goal is to avoid creating yet another linter or another set of rules and ins
 
 ## Why not just use Prettier with Standard?
 
-Standard is not only checking your code quality, but also your code style. Unfortunately Prettier and Standard code styles are incompatible in subtle ways. This means you can't use the two tools together. There exist [other][prettier-standard] [approaches][prettierx] to solving this problem, but they fork and modify prettier to make it format code to match more closely to the Standard style. While that's an ok option, it can cause difficulties in using the tools and extensions in the Prettier ecosystem. Healthier, on the other hand, completely lets go off Standard's code style in favor of Prettier's.
+Standard is not only checking your code quality, but also your code style. Unfortunately Prettier and Standard code styles are incompatible in subtle ways. This means you can't use the two tools together. There exist [other][prettier-standard] [approaches][prettierx] to solving this problem, but they have to resort to forking and modifying Prettier to make it format code more closely to Standard's style. While that's a valid approach, it can cause difficulties in using the tools and extensions in the Prettier ecosystem and I'm worried about longer term sustainability and compatibility of this approach. Healthier, on the other hand, completely lets go off Standard's code style in favor of Prettier's and combines the best aspects of each tool:
+
+1. Use Prettier to format your JavaScript, CSS and other files.
+2. Use Healthier to lint your JavaScript for code quality issues.
+3. Use Healthier to ensure all relevant files have indeed been formatted with Prettier.
+4. Use Healthier's zero config approach – no glob patterns necessary, no eslint plugins, no manual rule configuration.
 
 You can create a `.prettierrc` file in your project with the following content to bring your code style pretty close to Standard. Use `healthier --init` to create this exact config:
 
@@ -37,7 +42,7 @@ You can create a `.prettierrc` file in your project with the following content t
 npm install healthier
 ```
 
-Optionally use `--init` to generate `.prettierrc` inspired by `standard`:
+Optionally use `--init` to generate `.prettierrc` inspired by Standard:
 
 ```
 $ npx healthier --init
@@ -51,13 +56,13 @@ healthier: Friendly linter
   pages/index.js:9:3: 'useState' is not defined.
 ```
 
-Or pass `--fix` to format your code using prettier, which will also log the linting errors that can not be fixed:
+Or pass `--fix` to format your code using Prettier, which will also log the linting errors that can not be fixed:
 
 ```
 $ npx healthier --fix
 ```
 
-The `--fix` command is a convenient shortcut which means you don't even need to install prettier to format your code. But in practise, you might want to install and use prettier directly side by side with healthier, so that you get the best code editor integration and format other file formats, such as json and css.
+The `--fix` command is a convenient shortcut which means you don't even need to install Prettier to format your code. But in practise, you might want to install and use Prettier directly side by side with healthier, so that you get the best code editor integration and format other file formats, such as json and css.
 
 Note: `npx` prefix can be ommitted if you have `./node_modules/.bin` in your `PATH`.
 
@@ -79,7 +84,7 @@ The recommended setup is to install both Prettier and Healthier and configure th
 }
 ```
 
-Now, if you use Prettier and Healthier code editor extensions, you will get both auto formatting and linting working in tandem. And additionally, in CI, `npm test` will warn you if something was not formatted with prettier.
+Now, if you use Prettier and Healthier code editor extensions, you will get both auto formatting and linting working in tandem. And additionally, in CI, `npm test` will warn you if something was not formatted with Prettier.
 
 ### Editor plugins
 
@@ -125,7 +130,7 @@ Using a custom parser is sometimes necessary when using futuristic JS features. 
 
 ### Ignoring files
 
-Just like in `standard`, The paths `node_modules/**`, `*.min.js`, `bundle.js`, `coverage/**`, hidden files/folders (beginning with `.`), and all patterns in a project's root `.gitignore` file are automatically excluded when looking for `.js` files to check.
+Just like in Standard, The paths `node_modules/**`, `*.min.js`, `bundle.js`, `coverage/**`, hidden files/folders (beginning with `.`), and all patterns in a project's root `.gitignore` file are automatically excluded when looking for `.js` files to check.
 
 Sometimes you need to ignore additional folders or specific minfied files. To do that, add
 a `healthier.ignore` property to `package.json`:
