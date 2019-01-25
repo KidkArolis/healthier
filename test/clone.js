@@ -8,71 +8,71 @@
  * VERSION BUMP.)
  */
 
-var cp = require("child_process");
-var extend = require("xtend");
-var mkdirp = require("mkdirp");
-var path = require("path");
-var rimraf = require("rimraf");
-var series = require("run-series");
-var test = require("tape");
+var cp = require('child_process')
+var extend = require('xtend')
+var mkdirp = require('mkdirp')
+var path = require('path')
+var rimraf = require('rimraf')
+var series = require('run-series')
+var test = require('tape')
 
-var TMP = path.join(__dirname, "..", "tmp");
-var PRETTY_STANDARD = path.join(__dirname, "..", "bin", "cmd.js");
+var TMP = path.join(__dirname, '..', 'tmp')
+var HEALTHIER = path.join(__dirname, '..', 'bin', 'cmd.js')
 
-var URLs = require("./pretty-standard-repos.json");
+var URLs = require('./healthier-repos.json')
 
-var MODULES = {};
+var MODULES = {}
 URLs.forEach(function(url) {
-  var spliturl = url.split("/");
-  var name = spliturl[spliturl.length - 1];
-  MODULES[name] = url + ".git";
-});
+  var spliturl = url.split('/')
+  var name = spliturl[spliturl.length - 1]
+  MODULES[name] = url + '.git'
+})
 
-test("clone repos from github", function(t) {
-  rimraf.sync(TMP);
-  mkdirp.sync(TMP);
+test('clone repos from github', function(t) {
+  rimraf.sync(TMP)
+  mkdirp.sync(TMP)
 
   series(
     Object.keys(MODULES).map(function(name) {
-      var url = MODULES[name];
+      var url = MODULES[name]
       return function(cb) {
-        var args = ["clone", "--depth", 1, url, path.join(TMP, name)];
+        var args = ['clone', '--depth', 1, url, path.join(TMP, name)]
         // TODO: Start `git` in a way that works on Windows – PR welcome!
-        spawn("git", args, {}, cb);
-      };
+        spawn('git', args, {}, cb)
+      }
     }),
     function(err) {
-      if (err) throw err;
-      t.pass("cloned repos");
-      t.end();
+      if (err) throw err
+      t.pass('cloned repos')
+      t.end()
     }
-  );
-});
+  )
+})
 
-test("lint repos", function(t) {
+test('lint repos', function(t) {
   series(
     Object.keys(MODULES).map(function(name) {
       return function(cb) {
-        var cwd = path.join(TMP, name);
-        spawn(PRETTY_STANDARD, [], { cwd: cwd }, function(err) {
-          t.error(err, name);
-          cb(null);
-        });
-      };
+        var cwd = path.join(TMP, name)
+        spawn(HEALTHIER, [], { cwd: cwd }, function(err) {
+          t.error(err, name)
+          cb(null)
+        })
+      }
     }),
     function(err) {
-      if (err) throw err;
-      t.end();
+      if (err) throw err
+      t.end()
     }
-  );
-});
+  )
+})
 
 function spawn(command, args, opts, cb) {
-  var child = cp.spawn(command, args, extend({ stdio: "inherit" }, opts));
-  child.on("error", cb);
-  child.on("close", function(code) {
-    if (code !== 0) cb(new Error("non-zero exit code: " + code));
-    else cb(null);
-  });
-  return child;
+  var child = cp.spawn(command, args, extend({ stdio: 'inherit' }, opts))
+  child.on('error', cb)
+  child.on('close', function(code) {
+    if (code !== 0) cb(new Error('non-zero exit code: ' + code))
+    else cb(null)
+  })
+  return child
 }
