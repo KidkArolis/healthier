@@ -20,7 +20,7 @@ The goal is to avoid creating yet another linter or another set of rules and ins
 
 Standard is not only checking your code quality, but also your code style. Unfortunately Prettier and Standard code styles are incompatible in subtle ways. This means you can't use the two tools together. There exist [other][prettier-standard] [approaches][prettierx] to solving this problem, but they fork and modify prettier to make it format code to match more closely to the Standard style. While that's an ok option, it can cause difficulties in using the tools and extensions in the Prettier ecosystem. Healthier, on the other hand, completely lets go off Standard's code style in favor of Prettier's.
 
-You can create a `.prettierrc` file in your project with the following content to bring your code style pretty close to Standard:
+You can create a `.prettierrc` file in your project with the following content to bring your code style pretty close to Standard. Use `healthier --init` to create this exact config:
 
 ```
 {
@@ -37,10 +37,16 @@ You can create a `.prettierrc` file in your project with the following content t
 npm install healthier
 ```
 
+Optionally use `--init` to generate `.prettierrc` inspired by `standard`:
+
+```
+$ npx healthier --init
+```
+
 Then run in your project:
 
 ```
-$ healthier
+$ npx healthier
 healthier: Friendly linter
   pages/index.js:9:3: 'useState' is not defined.
 ```
@@ -48,10 +54,12 @@ healthier: Friendly linter
 Or pass `--fix` to format your code using prettier, which will also log the linting errors that can not be fixed:
 
 ```
-$ healthier --fix
+$ npx healthier --fix
 ```
 
 The `--fix` command is a convenient shortcut which means you don't even need to install prettier to format your code. But in practise, you might want to install and use prettier directly side by side with healthier, so that you get the best code editor integration and format other file formats, such as json and css.
+
+Note: `npx` prefix can be ommitted if you have `./node_modules/.bin` in your `PATH`.
 
 ### Recommended setup
 
