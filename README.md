@@ -88,8 +88,8 @@ Now, if you use Prettier and Healthier code editor extensions, you will get both
 
 ## Editor plugins
 
-- [Sublime Text](./docs/01-sublime-text.md) (Coming soon)
-- [VSCode](./docs/02-vscode.md) (Coming soon)
+- [Sublime Text](./docs/01-sublime-text.md)
+- [VSCode](./docs/02-vscode.md)
 - [Vim](./docs/03-vim.md)
 
 ## Rules

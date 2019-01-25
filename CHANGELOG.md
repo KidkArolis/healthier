@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 1.1.1
+
+- No changes to code, only updated README.
+
 ## 1.1.0
 
 - **Feature** Add `--init` flag that creates an opinionated, `standard` inspired `.prettierrc` file.
