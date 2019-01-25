@@ -20,16 +20,8 @@ test('prettier style', function(t) {
   t.equal(typeof result, 'object', 'result is an object')
   t.equal(result.errorCount, 2, '2 errors')
 
-  t.equal(
-    result.results[0].messages[0].message,
-    "'a' is assigned a value but never used.",
-    'first message'
-  )
-  t.equal(
-    result.results[0].messages[1].message,
-    'Replace `\'2\'` with `"2";⏎`',
-    'second message'
-  )
+  t.equal(result.results[0].messages[0].message, "'a' is assigned a value but never used.", 'first message')
+  t.equal(result.results[0].messages[1].message, 'Replace `\'2\'` with `"2";⏎`', 'second message')
 })
 
 test('standard code quality', function(t) {
@@ -41,9 +33,5 @@ test('standard code quality', function(t) {
   t.equal(typeof result, 'object', 'result is an object')
   t.equal(result.errorCount, 1, '1 errors')
 
-  t.equal(
-    result.results[0].messages[0].message,
-    "'a' is not defined.",
-    'first message'
-  )
+  t.equal(result.results[0].messages[0].message, "'a' is not defined.", 'first message')
 })
