@@ -88,9 +88,9 @@ Now, if you use Prettier and Healthier code editor extensions, you will get both
 
 ## Editor plugins
 
-- [Sublime Text – SublimeLinter-contrib-healthier](./docs/01-sublime-text.md) (Coming soon)
-- [VSCode – Healthier Linter](./docs/02-vscode.md) (Coming soon)
-- [Vim – Syntastic](./docs/03-vim.md)
+- [Sublime Text](./docs/01-sublime-text.md) (Coming soon)
+- [VSCode](./docs/02-vscode.md) (Coming soon)
+- [Vim](./docs/03-vim.md)
 
 ## Rules
 

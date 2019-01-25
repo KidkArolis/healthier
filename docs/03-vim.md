@@ -1,4 +1,4 @@
-# Vim Extension
+# Vim
 
 Install **[Syntastic][vim-1]** and add these lines to `.vimrc`:
 
