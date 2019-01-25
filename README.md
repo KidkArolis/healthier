@@ -8,7 +8,7 @@ An opinionated code linter – a friendly companion to prettier.
 
 ## Why?
 
-Prettier is a powerful code formatter. But linting your code can reveal a number of code quality issues and potential bugs.
+Prettier is a powerful code formatter. However, linting your code in addition to formatting can reveal a number of code quality issues and potential bugs.
 
 Healthier is a code linter that you should run in addition to formatting your code with Prettier to find the most common issues with your code. It saves you having to install or configure any of the 100s of eslint rules by hand.
 
