@@ -66,7 +66,7 @@ The `--fix` command is a convenient shortcut which means you don't even need to 
 
 Note: `npx` prefix can be ommitted if you have `./node_modules/.bin` in your `PATH`.
 
-### Recommended setup
+## Recommended setup
 
 The recommended setup is to install both Prettier and Healthier and configure them in `package.json`:
 
@@ -86,7 +86,7 @@ The recommended setup is to install both Prettier and Healthier and configure th
 
 Now, if you use Prettier and Healthier code editor extensions, you will get both auto formatting and linting working in tandem. And additionally, in CI, `npm test` will warn you if something was not formatted with Prettier.
 
-### Editor plugins
+## Editor plugins
 
 - [Sublime Text – SublimeLinter-contrib-healthier](./docs/01-sublime-text.md) (Coming soon)
 - [VSCode – Healthier Linter](./docs/02-vscode.md) (Coming soon)
@@ -112,11 +112,11 @@ Which in turn depend on the following plugins:
 
 That's a lot of things you don't need to install!
 
-### Configuring Prettier
+## Configuration
 
-When using `--fix`, Prettier is executed via eslint plugin and will follow the usual Prettier Config rules. You can use `.prettierrc`, to use `"semi": false` or `"singleQutoe": true` as usual. See https://prettier.io/docs/en/configuration.html for more information.
+Healthier can be configured in `package.json` in `healthier` field.
 
-### Custom Parser
+## Custom Parser
 
 Using a custom parser is sometimes necessary when using futuristic JS features. To use one, install it from npm (e.g. `npm install babel-eslint`) and configure it in your package.json:
 
@@ -128,7 +128,7 @@ Using a custom parser is sometimes necessary when using futuristic JS features. 
 }
 ```
 
-### Ignoring files
+## Ignoring files
 
 Just like in Standard, The paths `node_modules/**`, `*.min.js`, `bundle.js`, `coverage/**`, hidden files/folders (beginning with `.`), and all patterns in a project's root `.gitignore` file are automatically excluded when looking for `.js` files to check.
 
@@ -146,7 +146,31 @@ a `healthier.ignore` property to `package.json`:
 }
 ```
 
-### Ejecting
+## Globals
+
+If you want to allow certain globals, configure like so:
+
+```json
+{
+  "healthier": {
+    "globals": ["describe", "it"]
+  }
+}
+```
+
+## Using Flow or TypeScript
+
+Follow Standard's documentation on this, but replace `standard` with `healthier`: https://github.com/standard/standard#can-i-use-a-javascript-language-variant-like-flow-or-typescript.
+
+## Other Options
+
+In fact, make sure to check out all of [Standard configuration options][standard/standard]. Since Healthier is based on `standard-engine` all of the same features apply.
+
+## Configuring Prettier
+
+When using `--fix`, Prettier is executed via eslint plugin and will follow the usual Prettier Config rules. You can use `.prettierrc`, to use `"semi": false` or `"singleQutoe": true` as usual. See https://prettier.io/docs/en/configuration.html for more information.
+
+## Ejecting
 
 If you would like to stop using Healthier and switch to eslint whilst preserving all of the Healthier functionality, [follow this guide](./docs/04-ejecting.md).
 
