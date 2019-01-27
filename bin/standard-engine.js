@@ -31,7 +31,7 @@ function Cli(opts) {
       verbose: 'v'
     },
     boolean: ['init', 'fix', 'help', 'stdin', 'verbose', 'version'],
-    string: ['global', 'plugin', 'parser', 'env']
+    string: ['format', 'global', 'plugin', 'parser', 'env']
   })
 
   // Unix convention: Command line argument `-` is a shorthand for `--stdin`
@@ -52,7 +52,8 @@ Usage:
     Paths in a project's root .gitignore file are also automatically ignored.
 Flags:
         --init      Create a recommended .prettierrc file
-        --fix       Automatically fix problems
+        --fix       Automatically fix problems if prettier is installed
+    -f, --format    Use a specific output format - default: stylish
     -v, --verbose   Show rule names for errors (to ignore specific rules)
         --version   Show current version
     -h, --help      Show usage information
@@ -132,33 +133,32 @@ Flags (advanced):
       return
     }
 
-    console.error('%s: %s (%s)', opts.cmd, opts.tagline, opts.homepage)
-
-    // Are any fixable rules present?
-    var isFixable = result.results.some(function(result) {
-      return result.messages.some(function(message) {
-        return !!message.fix
+    if (argv.format === 'standard') {
+      result.results.forEach(function(result) {
+        result.messages.forEach(function(message) {
+          console.log(
+            '  %s:%d:%d: %s%s',
+            result.filePath,
+            message.line || 0,
+            message.column || 0,
+            message.message,
+            argv.verbose ? ' (' + message.ruleId + ')' : ''
+          )
+        })
       })
-    })
-
-    if (isFixable) {
-      console.error('%s: %s', opts.cmd, 'Run `' + opts.cmd + ' --fix` to automatically fix some problems.')
+    } else {
+      let formatter
+      try {
+        formatter = new standard.eslint.CLIEngine(opts.eslintConfig).getFormatter(argv.format)
+      } catch (e) {
+        console.error(e.message)
+        process.exitCode = 1
+        return
+      }
+      const output = formatter(result.results)
+      process.stderr.write(output)
+      process.exitCode = result.errorCount ? 1 : 0
     }
-
-    result.results.forEach(function(result) {
-      result.messages.forEach(function(message) {
-        log(
-          '  %s:%d:%d: %s%s',
-          result.filePath,
-          message.line || 0,
-          message.column || 0,
-          message.message,
-          argv.verbose ? ' (' + message.ruleId + ')' : ''
-        )
-      })
-    })
-
-    process.exitCode = result.errorCount ? 1 : 0
   }
 
   function onError(err) {
@@ -166,19 +166,5 @@ Flags (advanced):
     console.error(err.stack || err.message || err)
     console.error('\nIf you think this is a bug in `%s`, open an issue: %s', opts.cmd, opts.bugs)
     process.exitCode = 1
-  }
-
-  /**
-   * Print lint errors to stdout -- this is expected output from `standard-engine`.
-   * Note: When fixing code from stdin (`standard --stdin --fix`), the transformed
-   * code is printed to stdout, so print lint errors to stderr in this case.
-   */
-  function log() {
-    if (argv.stdin && argv.fix) {
-      arguments[0] = opts.cmd + ': ' + arguments[0]
-      console.error.apply(console, arguments)
-    } else {
-      console.log.apply(console, arguments)
-    }
   }
 }

@@ -1,5 +1,6 @@
-// this is using eslint-config-prettier only
-// to turn off styling related standard rules
+// this is using eslint-config-prettier to turn off
+// styling related standard rules and elint-plugin-prettier
+// to lint prettier style rules
 {
   "extends": [
     "standard",
@@ -12,5 +13,9 @@
     "prettier/standard",
     "prettier/unicorn",
     "prettier/vue"
-  ]
+  ],
+  "plugins": ["prettier"],
+  "rules": {
+    "prettier/prettier": "error"
+  }
 }
