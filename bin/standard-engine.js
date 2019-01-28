@@ -129,7 +129,7 @@ Flags (advanced):
       return
     }
     const output = formatter(result.results)
-    process.stderr.write(output)
+    process.stdout.write(output)
     process.exitCode = result.errorCount ? 1 : 0
   }
 
