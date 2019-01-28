@@ -17,14 +17,15 @@ Healthier delegates all of the code style related decisions to [Prettier][pretti
 
 The goal is to avoid creating yet another linter or another set of rules and instead reuse well established existing options in an easy to use workflow.
 
+Because Healthier is only concerned with code quality linting, it means you can use any code formatter, such as Prettier but also [prettierx][prettierx] or [prettier-standard][prettier-standard].
+
 ## Why not just use Prettier with Standard?
 
-Standard is not only checking your code quality, but also your code style. Unfortunately Prettier and Standard code styles are incompatible in subtle ways. This means you can't use the two tools together. There exist [other][prettier-standard] [approaches][prettierx] to solving this problem, but they have to resort to forking and modifying Prettier to make it format code more closely to Standard's style. While that's a valid approach, it can cause difficulties in using the tools and extensions in the Prettier ecosystem and I'm worried about longer term sustainability and compatibility of this approach. Healthier, on the other hand, completely lets go off Standard's code style in favor of Prettier's and combines the best aspects of each tool:
+Standard is not only checking your code quality, but also your code style. Unfortunately Prettier and Standard code styles are incompatible in subtle ways. This means you can't use the two tools together. Healthier completely lets go off Standard's code style in favor of Prettier's and combines the best aspects of each tool:
 
 1. Use Prettier to format your JavaScript, CSS and other files.
 2. Use Healthier to lint your JavaScript for code quality issues.
-3. Use Healthier to ensure all relevant files have indeed been formatted with Prettier.
-4. Use Healthier's zero config approach – no glob patterns necessary, no eslint plugins, no manual rule configuration.
+3. Benefit from Healthier's zero config approach – no glob patterns necessary, no eslint plugins, no manual rule configuration.
 
 You can create a `.prettierrc` file in your project with the following content to bring your code style pretty close to Standard. Use `healthier --init` to create this exact config:
 
@@ -53,23 +54,18 @@ Then run in your project:
 
 ```
 $ npx healthier
-healthier: Friendly linter
-  pages/index.js:9:3: 'useState' is not defined.
-```
 
-Or pass `--fix` to format your code using Prettier, which will also log the linting errors that can not be fixed:
+/App.js
+  4:1  error  'useState' is not defined  no-undef
 
+✖ 1 problem (1 error, 0 warnings)
 ```
-$ npx healthier --fix
-```
-
-The `--fix` command is a convenient shortcut which means you don't even need to install Prettier to format your code. But in practise, you might want to install and use Prettier directly side by side with healthier, so that you get the best code editor integration and format other file formats, such as json and css.
 
 Note: `npx` prefix can be ommitted if you have `./node_modules/.bin` in your `PATH`.
 
 ## Recommended setup
 
-The recommended setup is to install both Prettier and Healthier and configure them in `package.json`:
+The recommended setup is to install Prettier and Healthier and configure them in `package.json`:
 
 ```json
 {
@@ -79,13 +75,13 @@ The recommended setup is to install both Prettier and Healthier and configure th
     "prettier": "*"
   },
   "scripts": {
-    "test": "healthier && ava",
+    "test": "ava && healthier && prettier --check '**/*.{js,json,css}'",
     "format": "prettier --write '**/*.{js,json,css}'"
   }
 }
 ```
 
-Now, if you use Prettier and Healthier code editor extensions, you will get both auto formatting and linting working in tandem. And additionally, in CI, `npm test` will warn you if something was not formatted with Prettier.
+Now, if you use Prettier and Healthier code editor extensions, you will get both auto formatting and linting working in tandem. Additionally, in CI, `npm test` will warn you if something was not formatted with Prettier.
 
 ## Editor plugins
 
@@ -100,13 +96,11 @@ Healthier is based on `standard-engine` which in itself is based on `eslint`. He
 - eslint-config-standard
 - eslint-config-standard-jsx
 - eslint-config-prettier
-- eslint-plugin-prettier – to format code when using `--fix` flag
 
 Which in turn depend on the following plugins:
 
 - eslint-plugin-import
 - eslint-plugin-node
-- eslint-plugin-prettier
 - eslint-plugin-promise
 - eslint-plugin-react
 - eslint-plugin-standard
@@ -167,13 +161,21 @@ Follow Standard's documentation on this, but replace `standard` with `healthier`
 
 In fact, make sure to check out all of [Standard configuration options][standard/standard]. Since Healthier is based on `standard-engine` all of the same features apply.
 
-## Configuring Prettier
+## Configuring Eslint
 
-When using `--fix`, Prettier is executed via eslint plugin and will follow the usual Prettier Config rules. You can use `.prettierrc`, to use `"semi": false` or `"singleQutoe": true` as usual. See https://prettier.io/docs/en/configuration.html for more information.
+Eslint rules can be tweaked by creating .eslintrc file, e.g.:
+
+```
+{
+  "rules": {
+    "camelcase": 0
+  }
+}
+```
 
 ## Ejecting
 
-If you would like to stop using Healthier and switch to eslint whilst preserving all of the Healthier functionality, [follow this guide](./docs/04-ejecting.md).
+If you would like to stop using Healthier and switch to eslint whilst preserving most of the Healthier functionality, [follow this guide](./docs/04-ejecting.md).
 
 [travis-image]: https://img.shields.io/travis/KidkArolis/healthier.svg?style=flat-square
 [travis-url]: https://travis-ci.org/KidkArolis/healthier
