@@ -6,6 +6,8 @@
 module.exports = Cli
 
 var fs = require('fs')
+var path = require('path')
+var findRoot = require('find-root')
 var minimist = require('minimist')
 var getStdin = require('get-stdin')
 
@@ -50,15 +52,15 @@ Usage:
     working directory are checked, recursively.
     Certain paths (node_modules/, coverage/, vendor/, *.min.js, bundle.js, and
     files/folders that begin with '.' like .git/) are automatically ignored.
-    Paths in a project's root .gitignore file are also automatically ignored.
+    Paths in a project's root .gitignore and .prettierignore files are also automatically ignored.
 
 Flags:
-        --init      Create a recommended .prettierrc file
-    -f, --format    Use a specific output format - default: stylish
+        --init      Create a suggested .prettierrc file
         --version   Show current version
     -h, --help      Show usage information
 
 Flags (advanced):
+    -f, --format    Use a specific output format - default: stylish
         --stdin     Read file text from stdin
         --global    Declare global variable
         --plugin    Use custom eslint plugin
@@ -97,11 +99,19 @@ Flags (advanced):
     }
   }
 
+  let prettierIgnore
+  try {
+    const root = findRoot(process.cwd())
+    prettierIgnore = fs.readFileSync(path.join(root, '.prettierignore'), 'utf8')
+  } catch (e) {}
+  if (prettierIgnore) prettierIgnore = prettierIgnore.split(/\r?\n/)
+
   var lintOpts = {
     globals: argv.global,
     plugins: argv.plugin,
     envs: argv.env,
-    parser: argv.parser
+    parser: argv.parser,
+    ignore: prettierIgnore
   }
 
   if (argv.stdin) {

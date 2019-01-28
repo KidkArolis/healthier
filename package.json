@@ -22,6 +22,7 @@
     "eslint-plugin-promise": "~4.0.0",
     "eslint-plugin-react": "^7.12.4",
     "eslint-plugin-standard": "~4.0.0",
+    "find-root": "^1.1.0",
     "get-stdin": "^6.0.0",
     "minimist": "^1.2.0",
     "standard-engine": "~10.0.0"
