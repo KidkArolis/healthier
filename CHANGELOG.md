@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 2.0.0
+
+Huge thanks to @sheerun for all the feedback on V1. This version comes with many improvements.
+
+- The `--fix` flag has been removed to make Healthier more focused on code quality linting and be unopinionated about your choice of formatter. This avoids installing 2 extra dependencies – prettier and eslint-plugin-prettier, which means installation is faster, but also the checks run faster since we avoid double parsing each file with eslint and then prettier. This makes Healthier a more friendlier and less confusing tool when using it with prettierx, prettier-standard or any other formatter. This will also avoid any version conflicts between the Prettier used in your project and the Prettier that was used in Healthier to lint the style.
+- The output is now formatted using eslint's formatters and accepts any eslint `--format` option. This means a nicer looking default output, but also better integration with existing tooling since eslint format is more widely used. Incidentally, this helps to improve SublimeLinter-contrib-healthier plugin greatly. It's now a little bit faster and more comprehensive, it displays syntax errors and eslint errors, for example in case of missing plugins.
+- It's possible to extend eslint rules used by creating `.eslintrc` (or any other form that eslint supports). Previously, it was already possible to pass `--global`, `--env` and `--plugin` via command line argument or `package.json` field in `healthier` key. But now it's also possible to use `.eslintrc` which allows granular rule overrides or using plugin rules such as `react-native` or `react-a11y` without having to eject from the tool.
+- All of the `eslint-config-prettier` rules are being imported to ensure that styling related rules are turned off even when you're using typescript, vue, and other supported environments.
+- `.prettierignore` is now taken into account as part of the ignores, if you're not formatting that code, you probably also don't want to be linting it.
+- `--verbose` flag was removed since the output now includes the rule names depending on the `--format` used
+
 ## 1.1.2
 
 - Fix dependencies, explicitly depend on minimist and get-stdin
