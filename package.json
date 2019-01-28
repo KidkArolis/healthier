@@ -77,7 +77,8 @@
     "url": "https://github.com/KidkArolis/healthier.git"
   },
   "scripts": {
-    "test": "./bin/cmd.js && tape test/*.js"
+    "test": "./bin/cmd.js && prettier --check '**/*.{js,json}' tape test/*.js",
+    "format": "prettier --write '**/*.{js,json}'"
   },
   "standard": {
     "ignore": "tmp/**"
