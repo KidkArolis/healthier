@@ -1,7 +1,0 @@
-{
-  "extends": ["standard", "standard-jsx", "prettier"],
-  "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": "error"
-  }
-}
