@@ -1,4 +1,3 @@
-const path = require('path')
 const test = require('tape')
 const healthier = require('../')
 
@@ -13,10 +12,7 @@ test('api usage', function(t) {
 
 test('standard code quality', function(t) {
   t.plan(3)
-  const result = healthier.lintTextSync(`a();\n`, {
-    cwd: path.join(__dirname, 'fixtures'),
-    filename: path.join(__dirname, 'fixtures', 'test.js')
-  })
+  const result = healthier.lintTextSync(`a();\n`)
   t.equal(typeof result, 'object', 'result is an object')
   t.equal(result.errorCount, 1, '1 error')
   t.equal(result.results[0].messages[0].message, "'a' is not defined.", 'first message')
