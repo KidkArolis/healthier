@@ -1,6 +1,6 @@
-var path = require('path')
-var test = require('tape')
-var healthier = require('../')
+const path = require('path')
+const test = require('tape')
+const healthier = require('../')
 
 test('api usage', function(t) {
   t.plan(3)

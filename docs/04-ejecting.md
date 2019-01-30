@@ -11,18 +11,25 @@ npm uninstall healthier
 2. Install a bunch of things
 
 ```
-npm i eslint-config-standard eslint-config-standard-jsx eslint-config-prettier eslint-plugin-prettier eslint-plugin-import eslint-plugin-node eslint-plugin-prettier eslint-plugin-promise eslint-plugin-react eslint-plugin-standard
+npm i eslint-config-standard eslint-config-standard-jsx eslint-config-prettier eslint-plugin-import eslint-plugin-node eslint-plugin-promise eslint-plugin-react eslint-plugin-standard
 ```
 
-3. Create `eslintrc.json` with:
+3. Create `eslintrc.js` with:
 
 ```
-{
-  "extends": ["standard", "standard-jsx", "prettier"],
-  "plugins": ["prettier"],
-  "rules": {
-    "prettier/prettier": "error"
-  }
+module.exports = {
+  extends: [
+    'standard',
+    'standard-jsx',
+    'prettier',
+    'prettier/@typescript-eslint',
+    'prettier/babel',
+    'prettier/flowtype',
+    'prettier/react',
+    'prettier/standard',
+    'prettier/unicorn',
+    'prettier/vue'
+  ]
 }
 ```
 
@@ -30,7 +37,6 @@ npm i eslint-config-standard eslint-config-standard-jsx eslint-config-prettier e
 
 ```
 healthier -> eslint '**/*.js'
-healthier --fix -> eslint --fix '**/*.js'
 ```
 
 Note: the behaviour is slightly different wrt to ignored files. See README for which files Healthier ignores by default.
