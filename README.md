@@ -11,7 +11,7 @@ An opinionated code style agnostic linter – a friendly companion to Prettier.
 
 Prettier is a powerful code formatter. However, linting your code in addition to formatting can reveal a number of code quality issues and potential bugs.
 
-Healthier is a code linter that you should run in addition to formatting your code with Prettier to find the most common issues with your code. It saves you having to install or configure any of the 100s of eslint rules by hand or hand pick the plugins to use.
+Healthier is a code linter that you should run in addition to formatting your code with Prettier to find the most common issues with your code. It saves you having to install or configure any of the 100s of ESLint rules by hand or hand pick the plugins to use.
 
 Healthier delegates all of the code quality related decisions to [Standard][standard/standard]. The community has put a lot of effort into that project and Healthier simply helps you get the benefits of it when using a different code style, such as Prettier.
 
@@ -25,7 +25,7 @@ Standard is not only checking your code quality, but also your code style. Unfor
 
 1. Use Prettier to format your JavaScript, CSS and other files.
 2. Use Healthier to lint your JavaScript for code quality issues.
-3. Benefit from Healthier's Standard inspired zero config approach – no glob patterns necessary, no eslint plugins, no manual rule configuration.
+3. Benefit from Healthier's Standard inspired zero config approach – no glob patterns necessary, no ESLint plugins, no manual rule configuration.
 
 You can create a `.prettierrc` file in your project with the following content to bring your code style pretty close to Standard:
 
@@ -85,7 +85,7 @@ When you use Prettier and Healthier code editor extensions, you will get both au
 
 ## Rules
 
-Healthier is based on `standard-engine` which in itself is based on `eslint`. Healthier combines the following eslint config rules and plugins:
+Healthier is based on `standard-engine` which in itself is based on `eslint`. Healthier combines the following ESLint config rules and plugins:
 
 - eslint-config-standard
 - eslint-config-standard-jsx
@@ -236,7 +236,7 @@ For example, to make snake_case allowed in your code, set the following in your 
 
 ## Ejecting
 
-If you would like to stop using Healthier and switch to eslint whilst preserving most of the Healthier functionality, [follow this guide](./docs/04-ejecting.md).
+To stop using Healthier and switch to pure ESLint while preserving most of Healthier's functionality, [follow this guide](./docs/04-ejecting.md).
 
 [travis-image]: https://img.shields.io/travis/KidkArolis/healthier.svg?style=flat-square
 [travis-url]: https://travis-ci.org/KidkArolis/healthier
