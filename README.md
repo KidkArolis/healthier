@@ -5,19 +5,19 @@
 [![downloads][downloads-image]][downloads-url]
 [![Join the chat at https://gitter.im/healthier-linter/community](https://badges.gitter.im/healthier-linter/community.svg)](https://gitter.im/healthier-linter/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
-An opinionated code linter – a friendly companion to Prettier.
+An opinionated code style agnostic linter – a friendly companion to Prettier.
 
 ## Why?
 
 Prettier is a powerful code formatter. However, linting your code in addition to formatting can reveal a number of code quality issues and potential bugs.
 
-Healthier is a code linter that you should run in addition to formatting your code with Prettier to find the most common issues with your code. It saves you having to install or configure any of the 100s of eslint rules by hand.
+Healthier is a code linter that you should run in addition to formatting your code with Prettier to find the most common issues with your code. It saves you having to install or configure any of the 100s of eslint rules by hand or hand pick the plugins to use.
 
-Healthier delegates all of the code style related decisions to [Prettier][prettier/prettier] and all of the code quality related decisions to [Standard][standard/standard]. The community has put a lot of effort into those tools and Healthier simply helps you get the benefits of both.
+Healthier delegates all of the code quality related decisions to [Standard][standard/standard]. The community has put a lot of effort into that project and Healthier simply helps you get the benefits of it when using a different code style, such as Prettier.
 
-The goal is to avoid creating yet another linter or another set of rules and instead reuse well established existing options in an easy to use workflow.
+The goal is to avoid creating yet another opinionated set of rules and instead reuse well established existing options in an easy to use workflow.
 
-Because Healthier is only concerned with code quality linting, it means you can use any code formatter, such as Prettier but also [prettierx][prettierx] or [prettier-standard][prettier-standard].
+Because Healthier is only concerned with code quality linting, it means you can use any code formatter, such as Prettier or any of it's variants like [prettierx][prettierx] or [prettier-standard][prettier-standard].
 
 ## Why not just use Prettier with Standard?
 
@@ -25,9 +25,9 @@ Standard is not only checking your code quality, but also your code style. Unfor
 
 1. Use Prettier to format your JavaScript, CSS and other files.
 2. Use Healthier to lint your JavaScript for code quality issues.
-3. Benefit from Healthier's zero config approach – no glob patterns necessary, no eslint plugins, no manual rule configuration.
+3. Benefit from Healthier's Standard inspired zero config approach – no glob patterns necessary, no eslint plugins, no manual rule configuration.
 
-You can create a `.prettierrc` file in your project with the following content to bring your code style pretty close to Standard. Use `healthier --init` to create this exact config:
+You can create a `.prettierrc` file in your project with the following content to bring your code style pretty close to Standard:
 
 ```
 {
@@ -42,12 +42,6 @@ You can create a `.prettierrc` file in your project with the following content t
 
 ```
 npm install healthier
-```
-
-Optionally use `--init` to generate `.prettierrc` inspired by Standard:
-
-```
-$ npx healthier --init
 ```
 
 Then run in your project:
@@ -70,18 +64,18 @@ The recommended setup is to install Prettier and Healthier and configure them in
 ```json
 {
   "name": "my-cool-package",
+  "scripts": {
+    "test": "ava && healthier && prettier --check '**/*.{js,json,css}'",
+    "format": "prettier --write '**/*.{js,json,css,yml}'"
+  },
   "devDependencies": {
     "healthier": "*",
     "prettier": "*"
-  },
-  "scripts": {
-    "test": "ava && healthier && prettier --check '**/*.{js,json,css}'",
-    "format": "prettier --write '**/*.{js,json,css}'"
   }
 }
 ```
 
-Now, if you use Prettier and Healthier code editor extensions, you will get both auto formatting and linting working in tandem. Additionally, in CI, `npm test` will warn you if something was not formatted with Prettier.
+When you use Prettier and Healthier code editor extensions, you will get both auto formatting and linting working in tandem. And in CI, `npm test` will warn you about missed code quality issues or if something was not formatted with Prettier.
 
 ## Editor plugins
 
@@ -125,10 +119,9 @@ Using a custom parser is sometimes necessary when using futuristic JS features. 
 
 ### Ignoring files
 
-Just like in Standard, The paths `node_modules/**`, `*.min.js`, `bundle.js`, `coverage/**`, hidden files/folders (beginning with `.`), and all patterns in a project's root `.gitignore` file are automatically excluded when looking for `.js` files to check.
+Just like in Standard, The paths `node_modules/**`, `*.min.js`, `bundle.js`, `coverage/**`, hidden files/folders (beginning with `.`), and all patterns in a project's root `.gitignore` file are automatically excluded when looking for `.js` files to check. Additionally everything in `.prettierignore` is also ignored, since if you're not formatting something, you probably don't want to lint it.
 
-Sometimes you need to ignore additional folders or specific minfied files. To do that, add
-a `healthier.ignore` property to `package.json`:
+Sometimes you need to ignore additional folders or specific minfied files. To do that, add a `healthier.ignore` property to `package.json`:
 
 ```json
 "healthier": {
@@ -153,17 +146,85 @@ If you want to allow certain globals, configure like so:
 }
 ```
 
-### Using Flow or TypeScript
+### TypeScript
 
-Follow Standard's documentation on this, but replace `standard` with `healthier`: https://github.com/standard/standard#can-i-use-a-javascript-language-variant-like-flow-or-typescript.
+To use TypeScript, you need to run Healthier with `typescript-eslint-parser` as the parser,
+`eslint-plugin-typescript` as a plugin, and tell Healthier to lint `*.ts` files (since it
+doesn't by default).
 
-### Other Options
+```bash
+npm install --save-dev typescript-eslint-parser eslint-plugin-typescript
+```
 
-In fact, make sure to check out all of [Standard configuration options][standard/standard]. Since Healthier is based on `standard-engine` all of the same features apply.
+Then run:
 
-## Configuring Eslint
+```bash
+$ healthier --parser typescript-eslint-parser --plugin typescript *.ts
+```
 
-Eslint rules can be tweaked by creating .eslintrc file, e.g.:
+Or, add this to `package.json`:
+
+```json
+{
+  "healthier": {
+    "parser": "typescript-eslint-parser",
+    "plugins": ["typescript"]
+  }
+}
+```
+
+With that in `package.json`, you can run:
+
+```bash
+healthier *.ts
+```
+
+### Flow
+
+To use Flow, you need to run Healthier with `babel-eslint` as the parser and`eslint-plugin-flowtype` as a plugin.
+
+```bash
+npm install --save-dev babel-eslint eslint-plugin-flowtype
+```
+
+Then run:
+
+```bash
+$ standard --parser babel-eslint --plugin flowtype
+```
+
+Or, add this to `package.json`:
+
+```json
+{
+  "standard": {
+    "parser": "babel-eslint",
+    "plugins": ["flowtype"]
+  }
+}
+```
+
+### ESLint Environments
+
+ESLint has an [environment](http://eslint.org/docs/user-guide/configuring.html#specifying-environments) feature that predefines what global variables are allowed to be used. For a list of what globals are available for these environments, check the [globals](https://github.com/sindresorhus/globals/blob/master/globals.json) npm module.
+
+For example, to support mocha global variables in test files, add this to the top of the test files:
+
+```js
+/* eslint-env mocha */
+```
+
+Or, run:
+
+```bash
+$ healthier --env mocha
+```
+
+### Extending ESLint Rules
+
+Healthier allows extending ESLint rules by creating `.eslintrc` file. For full documentation see [Configuring ESLint](https://eslint.org/docs/user-guide/configuring).
+
+For example, to make snake_case allowed in your code, set the following in your `.eslintrc`:
 
 ```
 {
