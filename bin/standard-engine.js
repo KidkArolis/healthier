@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-// Note this is copied from standard-engine
-// to extend the CLI with an extra `--init` flag.
+// Note this is adapted from standard-engine
+// For now, we're still utilising the rest of standard-engine
+// except for the CLI interface
 
 module.exports = Cli
 
@@ -29,10 +30,11 @@ function Cli(opts) {
       global: 'globals',
       plugin: 'plugins',
       env: 'envs',
-      help: 'h',
-      format: 'f'
+      format: 'f',
+      version: 'v',
+      help: 'h'
     },
-    boolean: ['init', 'help', 'stdin', 'verbose', 'version'],
+    boolean: ['help', 'stdin', 'version'],
     string: ['format', 'global', 'plugin', 'parser', 'env']
   })
 
@@ -55,17 +57,14 @@ Usage:
     Paths in a project's root .gitignore and .prettierignore files are also automatically ignored.
 
 Flags:
-        --init      Create a suggested .prettierrc file
-        --version   Show current version
-    -h, --help      Show usage information
-
-Flags (advanced):
     -f, --format    Use a specific output format - default: stylish
         --stdin     Read file text from stdin
         --global    Declare global variable
         --plugin    Use custom eslint plugin
         --env       Use custom eslint environment
         --parser    Use custom js parser (e.g. babel-eslint)
+    -v, --version   Show current version
+    -h, --help      Show usage information
     `)
     process.exitCode = 0
     return
@@ -75,28 +74,6 @@ Flags (advanced):
     console.log(opts.version)
     process.exitCode = 0
     return
-  }
-
-  if (argv.init) {
-    if (fs.existsSync('./.prettierrc')) {
-      console.error(opts.cmd + ': .prettierrc file already exists in the current directory.')
-      process.exitCode = 1
-      return
-    } else {
-      fs.writeFileSync(
-        './.prettierrc',
-        `{
-  "semi": false,
-  "singleQuote": true,
-  "jsxSingleQuote": true,
-  "printWidth": 120
-}
-`
-      )
-      console.log(opts.cmd + ': .prettierrc file succesfully created.')
-      process.exitCode = 0
-      return
-    }
   }
 
   let prettierIgnore
