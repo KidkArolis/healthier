@@ -5,15 +5,15 @@
 
 module.exports = Cli
 
-var fs = require('fs')
-var path = require('path')
-var findRoot = require('find-root')
-var minimist = require('minimist')
-var getStdin = require('get-stdin')
+const fs = require('fs')
+const path = require('path')
+const findRoot = require('find-root')
+const minimist = require('minimist')
+const getStdin = require('get-stdin')
 
 function Cli(opts) {
-  var Linter = require('standard-engine').linter
-  var standard = new Linter(opts)
+  const Linter = require('standard-engine').linter
+  const standard = new Linter(opts)
 
   opts = Object.assign(
     {
@@ -24,7 +24,7 @@ function Cli(opts) {
     opts
   )
 
-  var argv = minimist(process.argv.slice(2), {
+  const argv = minimist(process.argv.slice(2), {
     alias: {
       global: 'globals',
       plugin: 'plugins',
@@ -106,7 +106,7 @@ Flags (advanced):
   } catch (e) {}
   if (prettierIgnore) prettierIgnore = prettierIgnore.split(/\r?\n/)
 
-  var lintOpts = {
+  const lintOpts = {
     globals: argv.global,
     plugins: argv.plugin,
     envs: argv.env,
