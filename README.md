@@ -234,6 +234,20 @@ For example, to make snake_case allowed in your code, set the following in your 
 }
 ```
 
+You can also use this method to extend other configs and plugins, for example, to use `standard-react` and `jsx-a11y` when developing a React application, install the following:
+
+```
+npm i -D eslint-config-standard-react eslint-plugin-jsx-a11y
+```
+
+And put this in your `.eslintrc`:
+
+```json
+{
+  "extends": ["plugin:jsx-a11y/strict", "standard-react"]
+}
+```
+
 ## Ejecting
 
 To stop using Healthier and switch to pure ESLint while preserving most of Healthier's functionality, [follow this guide](./docs/04-ejecting.md).
