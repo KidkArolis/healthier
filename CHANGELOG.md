@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.0.0
+
+- Upgrade to `standard@14` (previously `standard@12`)
+- Upgrade all other dependencies
+
 ## 2.0.0
 
 Huge thanks to @sheerun for all the feedback on V1. This version comes with many improvements.
