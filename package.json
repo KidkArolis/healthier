@@ -13,30 +13,30 @@
     "url": "https://github.com/KidkArolis/healthier/issues"
   },
   "dependencies": {
-    "eslint": "^5.12.1",
-    "eslint-config-prettier": "^4.0.0",
-    "eslint-config-standard": "12.0.0",
-    "eslint-config-standard-jsx": "6.0.2",
-    "eslint-plugin-import": "^2.16.0",
-    "eslint-plugin-node": "^8.0.1",
-    "eslint-plugin-promise": "~4.0.0",
-    "eslint-plugin-react": "^7.12.4",
-    "eslint-plugin-standard": "~4.0.0",
+    "eslint": "^6.2.0",
+    "eslint-config-prettier": "^6.1.0",
+    "eslint-config-standard": "^14.0.0",
+    "eslint-config-standard-jsx": "^8.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-node": "^9.1.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-standard": "^4.0.1",
     "find-root": "^1.1.0",
-    "get-stdin": "^6.0.0",
+    "get-stdin": "^7.0.0",
     "minimist": "^1.2.0",
-    "standard-engine": "~10.0.0"
+    "standard-engine": "^12.0.0"
   },
   "devDependencies": {
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "^10.0.2",
     "merge": "^1.2.0",
     "mkdirp": "^0.5.1",
-    "np": "^4.0.2",
-    "prettier": "^1.16.2",
-    "rimraf": "^2.5.4",
+    "np": "^5.0.3",
+    "prettier": "^1.18.2",
+    "rimraf": "^3.0.0",
     "run-series": "^1.1.1",
-    "tape": "^4.6.3",
-    "xtend": "^4.0.0"
+    "tape": "^4.11.0",
+    "xtend": "^4.0.2"
   },
   "engines": {
     "node": ">=6"
@@ -78,7 +78,7 @@
     "url": "https://github.com/KidkArolis/healthier.git"
   },
   "scripts": {
-    "test": "./bin/cmd.js && prettier --check '**/*.{js,json}' tape test/*.js",
+    "test": "./bin/cmd.js && prettier --check '**/*.{js,json}' && tape test/*.js",
     "format": "prettier --write '**/*.{js,json}'"
   },
   "standard": {
