@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 3.0.1
+## 3.0.2
 
 - Revert eslint from `6.2.0 -> 6.1.0` until https://github.com/eslint/eslint/issues/12117 is fixed
 
