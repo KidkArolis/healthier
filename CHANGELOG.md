@@ -3,6 +3,11 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.1.0
+
+- Upgrade to eslint 6.3.0 and latest standard, the one that fixes `no-unused-vars` false positives
+- Upgrade all other dependencies
+
 ## 3.0.2
 
 - Revert eslint from `6.2.0 -> 6.1.0` until https://github.com/eslint/eslint/issues/12117 is fixed
