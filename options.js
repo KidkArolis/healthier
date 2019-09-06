@@ -1,3 +1,4 @@
+const resolve = require('resolve')
 const pkg = require('./package.json')
 
 module.exports = {
@@ -8,7 +9,17 @@ module.exports = {
   tagline: 'Friendly linter',
   eslint: require('eslint'),
   eslintConfig: {
-    baseConfig: require('./eslintrc'),
+    baseConfig: usingReact() ? require('./eslintrc-react') : require('./eslintrc'),
     useEslintrc: true
+  }
+}
+
+function usingReact() {
+  try {
+    const reactPath = resolve.sync('react', { basedir: process.cwd() })
+    require(reactPath)
+    return true
+  } catch (e) {
+    return false
   }
 }

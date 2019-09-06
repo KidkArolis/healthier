@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.2.0
+
+- Auto detect if React is used and turn on `eslint-config-standard-react` and `eslint-plugin-react-hooks` rules, but turn off `react/prop-types` as that's really up to the project.
+
 ## 3.1.0
 
 - Re-add `--fix` flag since some rules in standard (e.g. `lines-between-class-members`) are fixable, but not enforced by `prettier`. Such is the price for trying to bridge the two tools.
