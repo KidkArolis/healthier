@@ -34,7 +34,7 @@ function Cli(opts) {
       version: 'v',
       help: 'h'
     },
-    boolean: ['help', 'stdin', 'version'],
+    boolean: ['fix', 'help', 'stdin', 'version'],
     string: ['format', 'global', 'plugin', 'parser', 'env']
   })
 
@@ -50,21 +50,26 @@ function Cli(opts) {
 Usage:
     ${opts.cmd} <flags> [FILES...]
 
-    If FILES is omitted, then all JavaScript source files (*.js, *.jsx) in the current
-    working directory are checked, recursively.
+    If FILES is omitted, all JavaScript source files (*.js, *.jsx, *.mjs, *.cjs)
+    in the current working directory are checked, recursively.
+
     Certain paths (node_modules/, coverage/, vendor/, *.min.js, bundle.js, and
     files/folders that begin with '.' like .git/) are automatically ignored.
+
     Paths in a project's root .gitignore and .prettierignore files are also automatically ignored.
 
 Flags:
     -f, --format    Use a specific output format - default: stylish
+        --fix       Automatically fix problems
+    -v, --version   Show current version
+    -h, --help      Show usage information
+
+Flags (advanced):
         --stdin     Read file text from stdin
         --global    Declare global variable
         --plugin    Use custom eslint plugin
         --env       Use custom eslint environment
         --parser    Use custom js parser (e.g. babel-eslint)
-    -v, --version   Show current version
-    -h, --help      Show usage information
     `)
     process.exitCode = 0
     return
@@ -84,6 +89,7 @@ Flags:
   if (prettierIgnore) prettierIgnore = prettierIgnore.split(/\r?\n/)
 
   const lintOpts = {
+    fix: argv.fix,
     globals: argv.global,
     plugins: argv.plugin,
     envs: argv.env,
@@ -91,8 +97,11 @@ Flags:
     ignore: prettierIgnore
   }
 
+  let stdinText
+
   if (argv.stdin) {
     getStdin().then(function(text) {
+      stdinText = text
       standard.lintText(text, lintOpts, onResult)
     })
   } else {
@@ -101,6 +110,16 @@ Flags:
 
   function onResult(err, result) {
     if (err) return onError(err)
+
+    if (argv.stdin && argv.fix) {
+      if (result.results[0].output) {
+        // Code contained fixable errors, so print the fixed code
+        process.stdout.write(result.results[0].output)
+      } else {
+        // Code did not contain fixable errors, so print original code
+        process.stdout.write(stdinText)
+      }
+    }
 
     if (!result.errorCount && !result.warningCount) {
       process.exitCode = 0

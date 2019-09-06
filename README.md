@@ -117,6 +117,12 @@ Using a custom parser is sometimes necessary when using futuristic JS features. 
 }
 ```
 
+## Automatic formatter
+
+There exist certain `standard` rules that `prettier` has no opinion about. For example the `lines-between-class-members` rule is turned on by `standard` to improve readability by enforcing lines between class members. However `prettier` allows class members without lines in between. In these cases you can get healthier to fix those issues for you:
+
+You can use `healthier --fix` to fix such issues automatically.
+
 ### Ignoring files
 
 Just like in Standard, The paths `node_modules/**`, `*.min.js`, `bundle.js`, `coverage/**`, hidden files/folders (beginning with `.`), and all patterns in a project's root `.gitignore` file are automatically excluded when looking for `.js` files to check. Additionally everything in `.prettierignore` is also ignored, since if you're not formatting something, you probably don't want to lint it.
