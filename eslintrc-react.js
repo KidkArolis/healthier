@@ -18,7 +18,7 @@ module.exports = {
     'react/prop-types': 'off',
 
     // turn on only the rules of hooks,
-    // the exhaustive deps gives too many false positives
+    // the exhaustive deps give too many false positives
     'react-hooks/rules-of-hooks': 'error',
     'react-hooks/exhaustive-deps': 'off',
 
