@@ -2,6 +2,7 @@
   "name": "healthier",
   "description": "An opinionated code linter – a friendly companion to prettier",
   "version": "3.0.2",
+  "license": "MIT",
   "author": {
     "name": "Karolis Narkevicius",
     "url": "http://twitter.com/KidkArolis"
@@ -9,8 +10,13 @@
   "bin": {
     "healthier": "./bin/cmd.js"
   },
-  "bugs": {
-    "url": "https://github.com/KidkArolis/healthier/issues"
+  "main": "index.js",
+  "scripts": {
+    "test": "./bin/cmd.js && prettier --check '**/*.{js,json}' && tape test/*.js",
+    "format": "prettier --write '**/*.{js,json}'"
+  },
+  "standard": {
+    "ignore": "tmp/**"
   },
   "dependencies": {
     "eslint": "^6.3.0",
@@ -39,9 +45,16 @@
     "xtend": "^4.0.2"
   },
   "engines": {
-    "node": ">=6"
+    "node": ">=10"
   },
   "homepage": "https://github.com/KidkArolis/healthier",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/KidkArolis/healthier.git"
+  },
+  "bugs": {
+    "url": "https://github.com/KidkArolis/healthier/issues"
+  },
   "keywords": [
     "JavaScript Standard Style",
     "bikeshed",
@@ -70,18 +83,5 @@
     "prettier",
     "format",
     "formatter"
-  ],
-  "license": "MIT",
-  "main": "index.js",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/KidkArolis/healthier.git"
-  },
-  "scripts": {
-    "test": "./bin/cmd.js && prettier --check '**/*.{js,json}' && tape test/*.js",
-    "format": "prettier --write '**/*.{js,json}'"
-  },
-  "standard": {
-    "ignore": "tmp/**"
-  }
+  ]
 }
