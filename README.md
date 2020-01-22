@@ -154,18 +154,16 @@ If you want to allow certain globals, configure like so:
 
 ### TypeScript
 
-To use TypeScript, you need to run Healthier with `typescript-eslint-parser` as the parser,
-`eslint-plugin-typescript` as a plugin, and tell Healthier to lint `*.ts` files (since it
-doesn't by default).
+To use TypeScript, you need to run Healthier with `@typescript-eslint/parser` as the parser, `@typescript-eslint/eslint-plugin` as a plugin, and tell Healthier to lint `*.ts` files (since it doesn't by default).
 
 ```bash
-npm install --save-dev typescript-eslint-parser eslint-plugin-typescript
+npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin
 ```
 
 Then run:
 
 ```bash
-$ healthier --parser typescript-eslint-parser --plugin typescript *.ts
+$ healthier --parser @typescript-eslint/parser --plugin @typescript-eslint *.ts
 ```
 
 Or, add this to `package.json`:
@@ -173,8 +171,8 @@ Or, add this to `package.json`:
 ```json
 {
   "healthier": {
-    "parser": "typescript-eslint-parser",
-    "plugins": ["typescript"]
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"]
   }
 }
 ```
