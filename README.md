@@ -55,7 +55,7 @@ $ npx healthier
 ✖ 1 problem (1 error, 0 warnings)
 ```
 
-Note: `npx` prefix can be ommitted if you have `./node_modules/.bin` in your `PATH`.
+Note: `npx` prefix can be omitted if you have `./node_modules/.bin` in your `PATH`.
 
 ## Recommended setup
 
@@ -127,7 +127,7 @@ You can use `healthier --fix` to fix such issues automatically.
 
 Just like in Standard, The paths `node_modules/**`, `*.min.js`, `bundle.js`, `coverage/**`, hidden files/folders (beginning with `.`), and all patterns in a project's root `.gitignore` file are automatically excluded when looking for `.js` files to check. Additionally everything in `.prettierignore` is also ignored, since if you're not formatting something, you probably don't want to lint it.
 
-Sometimes you need to ignore additional folders or specific minfied files. To do that, add a `healthier.ignore` property to `package.json`:
+Sometimes you need to ignore additional folders or specific minified files. To do that, add a `healthier.ignore` property to `package.json`:
 
 ```json
 "healthier": {
@@ -154,18 +154,16 @@ If you want to allow certain globals, configure like so:
 
 ### TypeScript
 
-To use TypeScript, you need to run Healthier with `typescript-eslint-parser` as the parser,
-`eslint-plugin-typescript` as a plugin, and tell Healthier to lint `*.ts` files (since it
-doesn't by default).
+To use TypeScript, you need to run Healthier with `@typescript-eslint/parser` as the parser, `@typescript-eslint/eslint-plugin` as a plugin, and tell Healthier to lint `*.ts` files (since it doesn't by default).
 
 ```bash
-npm install --save-dev typescript-eslint-parser eslint-plugin-typescript
+npm install --save-dev @typescript-eslint/parser @typescript-eslint/eslint-plugin
 ```
 
 Then run:
 
 ```bash
-$ healthier --parser typescript-eslint-parser --plugin typescript *.ts
+$ healthier --parser @typescript-eslint/parser --plugin @typescript-eslint *.ts
 ```
 
 Or, add this to `package.json`:
@@ -173,8 +171,8 @@ Or, add this to `package.json`:
 ```json
 {
   "healthier": {
-    "parser": "typescript-eslint-parser",
-    "plugins": ["typescript"]
+    "parser": "@typescript-eslint/parser",
+    "plugins": ["@typescript-eslint"]
   }
 }
 ```
@@ -212,7 +210,7 @@ Or, add this to `package.json`:
 
 ### ESLint Environments
 
-ESLint has an [environment](http://eslint.org/docs/user-guide/configuring.html#specifying-environments) feature that predefines what global variables are allowed to be used. For a list of what globals are available for these environments, check the [globals](https://github.com/sindresorhus/globals/blob/master/globals.json) npm module.
+ESLint has an [environment](http://eslint.org/docs/user-guide/configuring.html#specifying-environments) feature that defines what global variables are allowed to be used. For a list of what globals are available for these environments, check the [globals](https://github.com/sindresorhus/globals/blob/master/globals.json) npm module.
 
 For example, to support mocha global variables in test files, add this to the top of the test files:
 
