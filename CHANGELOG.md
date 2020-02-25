@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 3.3.0
+
+- Upgrade all dependencies
+
 ## 3.2.0
 
 - Auto detect if React is used and turn on `eslint-config-standard-react` and `eslint-plugin-react-hooks` rules, but turn off `react/prop-types` as that's really up to the project.
