@@ -10,7 +10,7 @@ module.exports = {
     'prettier/react',
     'prettier/standard',
     'prettier/unicorn',
-    'prettier/vue'
+    'prettier/vue',
   ],
   plugins: ['react-hooks'],
   rules: {
@@ -28,6 +28,6 @@ module.exports = {
     'react/require-render-return': 'error',
     'react/style-prop-object': 'error',
     'react/no-direct-mutation-state': 'warn',
-    'react/no-danger-with-children': 'error'
-  }
+    'react/no-danger-with-children': 'error',
+  },
 }

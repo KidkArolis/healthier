@@ -22,26 +22,26 @@ const HEALTHIER = path.join(__dirname, '..', 'bin', 'cmd.js')
 const URLs = require('./healthier-repos.json')
 
 const MODULES = {}
-URLs.forEach(function(url) {
+URLs.forEach(function (url) {
   const spliturl = url.split('/')
   const name = spliturl[spliturl.length - 1]
   MODULES[name] = url + '.git'
 })
 
-test('clone repos from github', function(t) {
+test('clone repos from github', function (t) {
   rimraf.sync(TMP)
   mkdirp.sync(TMP)
 
   series(
-    Object.keys(MODULES).map(function(name) {
+    Object.keys(MODULES).map(function (name) {
       const url = MODULES[name]
-      return function(cb) {
+      return function (cb) {
         const args = ['clone', '--depth', 1, url, path.join(TMP, name)]
         // TODO: Start `git` in a way that works on Windows – PR welcome!
         spawn('git', args, {}, cb)
       }
     }),
-    function(err) {
+    function (err) {
       if (err) throw err
       t.pass('cloned repos')
       t.end()
@@ -49,18 +49,18 @@ test('clone repos from github', function(t) {
   )
 })
 
-test('lint repos', function(t) {
+test('lint repos', function (t) {
   series(
-    Object.keys(MODULES).map(function(name) {
-      return function(cb) {
+    Object.keys(MODULES).map(function (name) {
+      return function (cb) {
         const cwd = path.join(TMP, name)
-        spawn(HEALTHIER, [], { cwd: cwd }, function(err) {
+        spawn(HEALTHIER, [], { cwd: cwd }, function (err) {
           t.error(err, name)
           cb(null)
         })
       }
     }),
-    function(err) {
+    function (err) {
       if (err) throw err
       t.end()
     }
@@ -70,7 +70,7 @@ test('lint repos', function(t) {
 function spawn(command, args, opts, cb) {
   const child = cp.spawn(command, args, extend({ stdio: 'inherit' }, opts))
   child.on('error', cb)
-  child.on('close', function(code) {
+  child.on('close', function (code) {
     if (code !== 0) cb(new Error('non-zero exit code: ' + code))
     else cb(null)
   })

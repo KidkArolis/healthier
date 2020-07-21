@@ -10,8 +10,8 @@ module.exports = {
   eslint: require('eslint'),
   eslintConfig: {
     baseConfig: usingReact() ? require('./eslintrc-react') : require('./eslintrc'),
-    useEslintrc: true
-  }
+    useEslintrc: true,
+  },
 }
 
 function usingReact() {

@@ -20,7 +20,7 @@ function Cli(opts) {
     {
       cmd: 'standard-engine',
       tagline: 'JavaScript Custom Style',
-      version: '0.0.0'
+      version: '0.0.0',
     },
     opts
   )
@@ -32,10 +32,10 @@ function Cli(opts) {
       env: 'envs',
       format: 'f',
       version: 'v',
-      help: 'h'
+      help: 'h',
     },
     boolean: ['fix', 'help', 'stdin', 'version'],
-    string: ['format', 'global', 'plugin', 'parser', 'env']
+    string: ['format', 'global', 'plugin', 'parser', 'env'],
   })
 
   // Unix convention: Command line argument `-` is a shorthand for `--stdin`
@@ -94,13 +94,13 @@ Flags (advanced):
     plugins: argv.plugin,
     envs: argv.env,
     parser: argv.parser,
-    ignore: prettierIgnore
+    ignore: prettierIgnore,
   }
 
   let stdinText
 
   if (argv.stdin) {
-    getStdin().then(function(text) {
+    getStdin().then(function (text) {
       stdinText = text
       standard.lintText(text, lintOpts, onResult)
     })
