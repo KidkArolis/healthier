@@ -37,7 +37,7 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
-    "merge": "^1.2.0",
+    "merge": "^2.1.1",
     "mkdirp": "^1.0.4",
     "np": "^6.3.2",
     "prettier": "^2.0.5",
