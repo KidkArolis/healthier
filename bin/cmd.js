@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 
 const opts = require('../options.js')
-require('./standard-engine')(opts)
+require('../standard-engine')(opts)
