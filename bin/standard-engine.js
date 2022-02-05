@@ -10,7 +10,6 @@ const fs = require('fs')
 const path = require('path')
 const findRoot = require('find-root')
 const minimist = require('minimist')
-const getStdin = require('get-stdin')
 
 function Cli(opts) {
   const Linter = require('standard-engine').linter
@@ -145,4 +144,27 @@ Flags (advanced):
     console.error('\nIf you think this is a bug in `%s`, open an issue: %s', opts.cmd, opts.bugs)
     process.exitCode = 1
   }
+}
+
+const { stdin } = process
+
+const getStdinBuffer = async () => {
+  if (stdin.isTTY) {
+    return Buffer.alloc(0)
+  }
+
+  const result = []
+  let length = 0
+
+  for await (const chunk of stdin) {
+    result.push(chunk)
+    length += chunk.length
+  }
+
+  return Buffer.concat(result, length)
+}
+
+async function getStdin() {
+  const buffer = await getStdinBuffer()
+  return buffer.toString()
 }
