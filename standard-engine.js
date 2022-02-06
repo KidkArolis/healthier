@@ -141,7 +141,7 @@ Flags (advanced):
         return
       }
 
-      console.error('%s: %s (%s)', opts.cmd, opts.tagline, opts.homepage)
+      console.log('%s: %s (%s)', opts.cmd, opts.tagline, opts.homepage)
 
       if (hasWarnings) {
         const homepage = opts.homepage != null ? ` (${opts.homepage})` : ''
