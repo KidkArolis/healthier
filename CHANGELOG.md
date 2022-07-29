@@ -3,6 +3,10 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.0.0
+
+- Upgrade all dependencies
+
 ## 5.0.1
 
 - Log the "healthier: Friendly linter" message to stdout, instead of stderr

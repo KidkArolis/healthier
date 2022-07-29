@@ -54,7 +54,7 @@ test('lint repos', function (t) {
     Object.keys(MODULES).map(function (name) {
       return function (cb) {
         const cwd = path.join(TMP, name)
-        spawn(HEALTHIER, [], { cwd: cwd }, function (err) {
+        spawn(HEALTHIER, [], { cwd }, function (err) {
           t.error(err, name)
           cb(null)
         })
