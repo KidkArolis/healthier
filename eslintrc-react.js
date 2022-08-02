@@ -1,17 +1,5 @@
 module.exports = {
-  extends: [
-    'standard',
-    'standard-jsx',
-    'standard-react',
-    'prettier',
-    'prettier/@typescript-eslint',
-    'prettier/babel',
-    'prettier/flowtype',
-    'prettier/react',
-    'prettier/standard',
-    'prettier/unicorn',
-    'prettier/vue',
-  ],
+  extends: ['standard', 'standard-jsx', 'standard-react', 'prettier'],
   plugins: ['react-hooks'],
   rules: {
     // turn this off since it's really up to the project
