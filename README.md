@@ -107,12 +107,12 @@ Healthier can be configured in `package.json` in `healthier` field.
 
 ### Custom Parser
 
-Using a custom parser is sometimes necessary when using futuristic JS features. To use one, install it from npm (e.g. `npm install babel-eslint`) and configure it in your package.json:
+Using a custom parser is sometimes necessary when using futuristic JS features. To use one, install it from npm (e.g. `npm install @babel/eslint-parser`) and configure it in your package.json:
 
 ```json
 {
   "healthier": {
-    "parser": "babel-eslint"
+    "parser": "@babel/eslint-parser"
   }
 }
 ```
@@ -185,16 +185,16 @@ healthier *.ts
 
 ### Flow
 
-To use Flow, you need to run Healthier with `babel-eslint` as the parser and`eslint-plugin-flowtype` as a plugin.
+To use Flow, you need to run Healthier with `@babel/eslint-parser` as the parser and`eslint-plugin-flowtype` as a plugin.
 
 ```bash
-npm install --save-dev babel-eslint eslint-plugin-flowtype
+npm install --save-dev @babel/eslint-parser eslint-plugin-flowtype
 ```
 
 Then run:
 
 ```bash
-$ standard --parser babel-eslint --plugin flowtype
+$ standard --parser @babel/eslint-parser --plugin flowtype
 ```
 
 Or, add this to `package.json`:
@@ -202,7 +202,7 @@ Or, add this to `package.json`:
 ```json
 {
   "standard": {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
     "plugins": ["flowtype"]
   }
 }

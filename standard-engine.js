@@ -78,7 +78,7 @@ Flags (advanced):
         --global    Declare global variable
         --plugin    Use custom eslint plugin
         --env       Use custom eslint environment
-        --parser    Use custom js parser (e.g. babel-eslint)
+        --parser    Use custom js parser (e.g. @babel/eslint-parser)
     `)
     process.exitCode = 0
     return
