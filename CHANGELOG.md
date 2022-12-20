@@ -3,7 +3,7 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
-## 6.1.1
+## 6.2.0
 
 - Update README and cli help text to reference the new @babel/eslint-parser
 - Remove the unused `babel-eslint` dep
