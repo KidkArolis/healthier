@@ -37,7 +37,7 @@
   "devDependencies": {
     "merge": "^2.1.1",
     "mkdirp": "^1.0.4",
-    "np": "^7.6.2",
+    "np": "^7.6.3",
     "prettier": "^2.8.1",
     "rimraf": "^3.0.2",
     "run-series": "^1.1.9",
