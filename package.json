@@ -29,12 +29,12 @@
     "eslint-plugin-promise": "^6.1.1",
     "eslint-plugin-react": "^7.31.11",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-standard": "^5.0.0",
     "find-root": "^1.1.0",
     "minimist": "^1.2.7",
     "standard-engine": "^15.0.0-0"
   },
   "devDependencies": {
+    "healthier": "^6.2.0",
     "merge": "^2.1.1",
     "mkdirp": "^1.0.4",
     "np": "^7.6.3",
