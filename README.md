@@ -1,6 +1,5 @@
 # Healthier
 
-[![travis][travis-image]][travis-url]
 [![npm][npm-image]][npm-url]
 [![downloads][downloads-image]][downloads-url]
 [![Join the chat at https://gitter.im/healthier-linter/community](https://badges.gitter.im/healthier-linter/community.svg)](https://gitter.im/healthier-linter/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -256,8 +255,6 @@ And put this in your `.eslintrc`:
 
 To stop using Healthier and switch to pure ESLint while preserving most of Healthier's functionality, [follow this guide](./docs/04-ejecting.md).
 
-[travis-image]: https://img.shields.io/travis/KidkArolis/healthier.svg?style=flat-square
-[travis-url]: https://travis-ci.org/KidkArolis/healthier
 [npm-image]: https://img.shields.io/npm/v/healthier.svg?style=flat-square
 [npm-url]: https://npmjs.org/package/healthier
 [downloads-image]: https://img.shields.io/npm/dm/healthier.svg?style=flat-square
