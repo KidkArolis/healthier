@@ -10,7 +10,7 @@
 
 const cp = require('child_process')
 const extend = require('xtend')
-const mkdirp = require('mkdirp')
+const { mkdirp } = require('mkdirp')
 const path = require('path')
 const rimraf = require('rimraf')
 const series = require('run-series')

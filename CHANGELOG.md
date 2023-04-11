@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 6.3.0
+
+Dependency maintenance:
+
+- Upgrade all dependencies, fix npm audit
+- Install a missing `resolve` dependency
+- Remove `np` and `healthier` dev dependencies
+
 ## 6.2.1
 
 - Remove the no longer needed `eslint-plugin-standard` dep
