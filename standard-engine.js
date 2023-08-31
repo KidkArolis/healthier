@@ -148,7 +148,7 @@ Flags (advanced):
         console.error(
           '%s: %s',
           opts.cmd,
-          `Some warnings are present which will be errors in the next version${homepage}`
+          `Some warnings are present which will be errors in the next version${homepage}`,
         )
       }
 
@@ -169,6 +169,6 @@ Flags (advanced):
     .catch((err) =>
       process.nextTick(() => {
         throw err
-      })
+      }),
     )
 }

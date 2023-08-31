@@ -19,28 +19,28 @@
     "ignore": "tmp/**"
   },
   "dependencies": {
-    "eslint": "^8.38.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-config-standard": "^17.0.0",
+    "eslint": "^8.48.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-config-standard": "^17.1.0",
     "eslint-config-standard-jsx": "^11.0.0",
     "eslint-config-standard-react": "^13.0.0",
-    "eslint-plugin-import": "^2.27.5",
-    "eslint-plugin-n": "^15.7.0",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-n": "^16.0.2",
     "eslint-plugin-promise": "^6.1.1",
-    "eslint-plugin-react": "^7.32.2",
+    "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
     "find-root": "^1.1.0",
     "minimist": "^1.2.8",
-    "resolve": "^1.22.2",
-    "standard-engine": "^15.0.0-0"
+    "resolve": "^1.22.4",
+    "standard-engine": "^15.1.0"
   },
   "devDependencies": {
     "merge": "^2.1.1",
-    "mkdirp": "^3.0.0",
-    "prettier": "^2.8.7",
-    "rimraf": "^5.0.0",
+    "mkdirp": "^3.0.1",
+    "prettier": "^3.0.3",
+    "rimraf": "^5.0.1",
     "run-series": "^1.1.9",
-    "tape": "^5.6.3",
+    "tape": "^5.6.6",
     "xtend": "^4.0.2"
   },
   "engines": {

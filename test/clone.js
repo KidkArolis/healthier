@@ -45,7 +45,7 @@ test('clone repos from github', function (t) {
       if (err) throw err
       t.pass('cloned repos')
       t.end()
-    }
+    },
   )
 })
 
@@ -63,7 +63,7 @@ test('lint repos', function (t) {
     function (err) {
       if (err) throw err
       t.end()
-    }
+    },
   )
 })
 
