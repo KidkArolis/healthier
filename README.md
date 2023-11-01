@@ -88,6 +88,7 @@ Healthier is based on `standard-engine` which in itself is based on `eslint`. He
 
 - eslint-config-standard
 - eslint-config-standard-jsx
+- eslint-config-standard-react
 - eslint-config-prettier
 
 Which in turn depend on the following plugins:
@@ -96,9 +97,11 @@ Which in turn depend on the following plugins:
 - eslint-plugin-node
 - eslint-plugin-promise
 - eslint-plugin-react
-- eslint-plugin-standard
+- eslint-plugin-react-hooks
 
 That's a lot of things you don't need to install!
+
+Review the full list of `standard` rules here https://github.com/standard/standard/blob/master/RULES.md.
 
 ## Configuration
 
@@ -180,31 +183,6 @@ With that in `package.json`, you can run:
 
 ```bash
 healthier *.ts
-```
-
-### Flow
-
-To use Flow, you need to run Healthier with `@babel/eslint-parser` as the parser and`eslint-plugin-flowtype` as a plugin.
-
-```bash
-npm install --save-dev @babel/eslint-parser eslint-plugin-flowtype
-```
-
-Then run:
-
-```bash
-$ standard --parser @babel/eslint-parser --plugin flowtype
-```
-
-Or, add this to `package.json`:
-
-```json
-{
-  "standard": {
-    "parser": "@babel/eslint-parser",
-    "plugins": ["flowtype"]
-  }
-}
 ```
 
 ### ESLint Environments

@@ -3,6 +3,12 @@
 All notable changes to this project will be documented in this file.
 This project adheres to [Semantic Versioning](http://semver.org/).
 
+## 7.0.0
+
+- Upgrade all dependencies
+- Remove React rule customisations - healthier now uses `standard-react` rule configuration. Most notably - this enables the `react-hooks/exhaustive-deps` warnings. Note: `react/prop-types` is still turned off.
+
+
 ## 6.5.0
 
 Dependency maintenance:
