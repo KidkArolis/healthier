@@ -1,7 +1,7 @@
 {
   "name": "healthier",
   "description": "An opinionated code linter – a friendly companion to prettier",
-  "version": "6.5.0",
+  "version": "7.0.0",
   "license": "MIT",
   "author": {
     "name": "Karolis Narkevicius",
