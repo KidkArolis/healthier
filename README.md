@@ -1,8 +1,29 @@
-# Healthier
+## ⚠️ Deprecated
 
-[![npm][npm-image]][npm-url]
-[![downloads][downloads-image]][downloads-url]
-[![Join the chat at https://gitter.im/healthier-linter/community](https://badges.gitter.im/healthier-linter/community.svg)](https://gitter.im/healthier-linter/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+This project is no longer actively maintained.
+
+It is recommended to use [NeoStandard](https://github.com/neostandard/neostandard) instead. NeoStandard offers a modern approach to JavaScript linting, compatible with ESLint's flat config and built for today's ecosystem.
+
+To migrate, you can follow these steps:
+
+```bash
+# 1. Uninstall healthier
+npm uninstall healthier
+
+# 2. Install NeoStandard and ESLint
+npm install -D neostandard eslint
+
+# 3. Generate an ESLint flat configuration file (eslint.config.js)
+#    Use --esm for ESM projects or omit for CJS projects
+npx neostandard --esm > eslint.config.js
+
+# 4. Run ESLint
+eslint . # Or specify your source files/directories
+```
+
+NeoStandard provides a similar zero-config experience but leverages the latest ESLint features and community best practices.
+
+# Healthier
 
 An opinionated code style agnostic linter – a friendly companion to Prettier.
 
