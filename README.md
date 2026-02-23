@@ -2,26 +2,41 @@
 
 This project is no longer actively maintained.
 
-It is recommended to use [NeoStandard](https://github.com/neostandard/neostandard) instead. NeoStandard offers a modern approach to JavaScript linting, compatible with ESLint's flat config and built for today's ecosystem.
+### Recommended: oxlint
 
-To migrate, you can follow these steps:
+The recommended replacement is [oxlint](https://oxc.rs/docs/guide/usage/linter.html). It's a single binary with no plugins to install, no configuration required, and it's incredibly fast. It shares Healthier's philosophy of strong defaults that just work.
 
 ```bash
 # 1. Uninstall healthier
 npm uninstall healthier
 
-# 2. Install NeoStandard and ESLint
-npm install -D neostandard eslint
+# 2. Install oxlint
+npm install -D oxlint
 
-# 3. Generate an ESLint flat configuration file (eslint.config.js)
-#    Use --esm for ESM projects or omit for CJS projects
-npx neostandard --esm > eslint.config.js
-
-# 4. Run ESLint
-eslint . # Or specify your source files/directories
+# 3. Run it
+npx oxlint
 ```
 
-NeoStandard provides a similar zero-config experience but leverages the latest ESLint features and community best practices.
+By default, oxlint enables its "correctness" rules — code that is definitively wrong or useless. For an experience closer to what Healthier provided, enable the "suspicious" category too by adding an `oxlint.json` to your project:
+
+```json
+{
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error"
+  }
+}
+```
+
+### Alternative: NeoStandard
+
+If you prefer to stay in the ESLint ecosystem, [NeoStandard](https://github.com/neostandard/neostandard) is a good option. It's compatible with ESLint's flat config and built for today's ecosystem.
+
+```bash
+npm install -D neostandard eslint
+npx neostandard --esm > eslint.config.js
+eslint .
+```
 
 # Healthier
 
